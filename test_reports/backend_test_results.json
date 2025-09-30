@@ -1,0 +1,213 @@
+{
+  "timestamp": "2025-09-30T13:18:35.613129",
+  "summary": {
+    "tests_run": 9,
+    "tests_passed": 9,
+    "success_rate": 100.0
+  },
+  "test_results": [
+    {
+      "test_name": "Health Check",
+      "endpoint": "health",
+      "method": "GET",
+      "expected_status": 200,
+      "actual_status": 200,
+      "success": true,
+      "response_time": 0.09128,
+      "error": null,
+      "response_data": {
+        "status": "healthy",
+        "service": "SignBridge API",
+        "timestamp": "2025-09-30T13:18:35.227803+00:00",
+        "features": {
+          "sign_recognition": true,
+          "text_to_sign": true,
+          "conversation_history": true
+        }
+      }
+    },
+    {
+      "test_name": "Root Endpoint",
+      "endpoint": "",
+      "method": "GET",
+      "expected_status": 200,
+      "actual_status": 200,
+      "success": true,
+      "response_time": 0.012038,
+      "error": null,
+      "response_data": {
+        "message": "SignBridge API - AI-powered Sign Language Translator",
+        "version": "1.0.0"
+      }
+    },
+    {
+      "test_name": "Supported Signs",
+      "endpoint": "supported-signs",
+      "method": "GET",
+      "expected_status": 200,
+      "actual_status": 200,
+      "success": true,
+      "response_time": 0.034387,
+      "error": null,
+      "response_data": {
+        "signs": [
+          "hello",
+          "thank_you",
+          "yes",
+          "no",
+          "help",
+          "stop",
+          "please",
+          "water",
+          "more",
+          "finished"
+        ],
+        "phrases": [
+          "hello",
+          "thank you",
+          "yes",
+          "no",
+          "help",
+          "stop",
+          "please",
+          "water",
+          "more",
+          "finished",
+          "good morning",
+          "how are you",
+          "i am fine",
+          "nice to meet you"
+        ],
+        "total_signs": 10,
+        "total_phrases": 14
+      }
+    },
+    {
+      "test_name": "Sign Prediction",
+      "endpoint": "predict",
+      "method": "POST",
+      "expected_status": 200,
+      "actual_status": 200,
+      "success": true,
+      "response_time": 0.076929,
+      "error": null,
+      "response_data": {
+        "gesture": "yes",
+        "confidence": 0.8,
+        "timestamp": "2025-09-30T13:18:35.361459Z"
+      }
+    },
+    {
+      "test_name": "Text to Sign - Supported phrase",
+      "endpoint": "text-to-sign",
+      "method": "POST",
+      "expected_status": 200,
+      "actual_status": 200,
+      "success": true,
+      "response_time": 0.038826,
+      "error": null,
+      "response_data": {
+        "animation_key": "wave_hello.gif",
+        "text": "hello",
+        "supported": true
+      }
+    },
+    {
+      "test_name": "Text to Sign - Supported phrase",
+      "endpoint": "text-to-sign",
+      "method": "POST",
+      "expected_status": 200,
+      "actual_status": 200,
+      "success": true,
+      "response_time": 0.044276,
+      "error": null,
+      "response_data": {
+        "animation_key": "thank_you.gif",
+        "text": "thank you",
+        "supported": true
+      }
+    },
+    {
+      "test_name": "Text to Sign - Unsupported phrase",
+      "endpoint": "text-to-sign",
+      "method": "POST",
+      "expected_status": 200,
+      "actual_status": 200,
+      "success": true,
+      "response_time": 0.041097,
+      "error": null,
+      "response_data": {
+        "animation_key": "not_supported.gif",
+        "text": "unsupported phrase",
+        "supported": false
+      }
+    },
+    {
+      "test_name": "Get Conversations",
+      "endpoint": "conversations",
+      "method": "GET",
+      "expected_status": 200,
+      "actual_status": 200,
+      "success": true,
+      "response_time": 0.038536,
+      "error": null,
+      "response_data": [
+        {
+          "id": "3dfddc31-6a82-406c-8132-0c7496b15e7e",
+          "message": "unsupported phrase",
+          "type": "text_to_sign",
+          "confidence": 0.1,
+          "timestamp": "2025-09-30T13:18:35.528000"
+        },
+        {
+          "id": "b09a9848-6930-499e-b462-12c8466e3e0a",
+          "message": "thank you",
+          "type": "text_to_sign",
+          "confidence": 0.9,
+          "timestamp": "2025-09-30T13:18:35.485000"
+        },
+        {
+          "id": "a5709bec-f1da-4ecb-b8f4-f68eb8750c5c",
+          "message": "hello",
+          "type": "text_to_sign",
+          "confidence": 0.9,
+          "timestamp": "2025-09-30T13:18:35.440000"
+        },
+        {
+          "id": "8df050c2-5e7f-4a78-9a87-a8d883b5512b",
+          "message": "yes",
+          "type": "sign_to_text",
+          "confidence": 0.8,
+          "timestamp": "2025-09-30T13:18:35.360000"
+        },
+        {
+          "id": "fd196144-a228-4069-add5-062052a5963b",
+          "message": "Hello",
+          "type": "text_to_sign",
+          "confidence": 0.9,
+          "timestamp": "2025-09-30T13:16:22.490000"
+        },
+        {
+          "id": "0e7a2256-fb18-4c36-b443-3ec46f945c7b",
+          "message": "hello",
+          "type": "sign_to_text",
+          "confidence": 0.8,
+          "timestamp": "2025-09-30T13:16:16.185000"
+        }
+      ]
+    },
+    {
+      "test_name": "Clear Conversations",
+      "endpoint": "conversations",
+      "method": "DELETE",
+      "expected_status": 200,
+      "actual_status": 200,
+      "success": true,
+      "response_time": 0.038329,
+      "error": null,
+      "response_data": {
+        "message": "Cleared 6 conversation entries"
+      }
+    }
+  ]
+}
